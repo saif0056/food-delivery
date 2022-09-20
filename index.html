@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>food delivery website</title>
+
+
+
+       <!-- aos css cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+
+        <!-- google fonts cdn link  -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;500&family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
+    
+        <!-- font awesome cdn link  -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+    <style>
+       
+
+       :root{
+    --yellow:#F7CA3E;
+}
+
+*{
+    font-family: 'Roboto', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none; border:none;
+    text-transform: capitalize;
+    transition:all .2s linear;
+}
+
+h1, h3{
+    font-family: 'Oswald', sans-serif;
+}
+
+*::selection{
+    background:var(--yellow);
+    color:#fff;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body{
+    overflow-x: hidden;
+    /* height:200rem; */
+}
+
+html::-webkit-scrollbar{
+    width:1.4rem;
+}
+
+html::-webkit-scrollbar-track{
+    background:#333;
+}
+
+html::-webkit-scrollbar-thumb{
+    background:var(--yellow);
+}
+
+section{
+    min-height: 100vh;
+    padding:1rem 10%;
+    padding-top: 8.5rem;
+}
+
+.btn{
+    font-size: 1.7rem;
+    padding:.7rem 4rem;
+    border-radius: 5rem;
+    margin-top: 1rem;
+    background:none;
+    color:#333;
+    cursor: pointer;
+    border:.2rem solid var(--yellow);
+}
+
+.btn:hover{
+    background:var(--yellow);
+}
+
+.heading{
+    text-align: center;
+    font-size: 4rem;
+    padding:0 .5rem;
+    color:#333;
+}
+
+.heading span{
+    color:var(--yellow);
+}
+
+header{
+    position: fixed;
+    top:0; left:0;
+    z-index: 1000;
+    width:100%;
+    background:#fff;
+    padding:1.5rem 10%;
+    box-shadow: 0 .3rem 2rem rgba(0,0,0,.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .logo img{
+    height:5rem;
+}
+
+header .navbar ul{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+header .navbar ul li{
+    margin-left: 3rem;
+}
+
+header .navbar ul li a{
+    font-size: 1.7rem;
+    color:#666;
+}
+
+header .navbar ul li a.active,
+header .navbar ul li a:hover{
+    color:var(--yellow);
+}
+
+header #menu-bar{
+    font-size: 3rem;
+    color:#666;
+    cursor: pointer;
+    display: none;
+}
+
+.home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.home::before,
+.home::after{
+    content:'';
+    position: absolute;
+    top:5rem; right:-6rem;
+    background:var(--yellow);
+    border-radius: 3rem;
+    transform:rotate(-45deg);
+    height:40rem;
+    width:70rem;
+    z-index: -2;
+    animation: animte 1s linear 1;
+}
+
+@keyframes animte{
+    0%{
+        transform:rotate(45deg) translateY(-40rem);
+    }
+}
+
+.home::before{
+    top:-7rem;
+    background:#fff;
+    box-shadow: 0 1rem 4rem rgba(0,0,0,.1);
+    z-index: -1;
+}
+
+.home .image{
+    flex:1 1 39rem;
+}
+
+.home .image img{
+    width:100%;
+}
+
+.home .content{
+    flex:1 1 39rem;
+}
+
+.home .content h3{
+    color:#333;
+    font-size: 6rem;
+}
+
+.home .content p{
+    color:#666;
+    font-size: 2rem;
+    padding:1rem 0;
+}
+
+.about{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.about .image{
+    flex:1 1 40rem;
+    height:50rem;
+    background:url('images/about-frame-img.png'), url('images/about-img.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: screen;
+}
+
+.about .content{
+    flex:1 1 40rem;
+    padding:2rem;
+}
+
+.about .content h3{
+    font-size: 4rem;
+    color:#333;
+}
+
+.about .content p{
+    font-size: 1.6rem;
+    color:#666;
+    padding:1rem 0;
+}
+
+.menu .list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    padding:1rem 0;
+    margin:2rem 0;
+    border-top: .3rem dashed rgba(0,0,0,.2);
+    border-bottom: .3rem dashed rgba(0,0,0,.2);
+}
+
+.menu .list .btn{
+    margin:1rem;
+}
+
+.menu .list .btn.active,
+.menu .list .btn:hover{
+    background:var(--yellow);
+    color:#fff;
+}
+
+.menu .row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.menu .row .image{
+    margin:2rem;
+    padding:2rem;
+    flex:1 1 40rem;
+    border-radius: 1rem;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
+}
+
+.menu .row .image img{
+    width:100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.menu .row .content{
+    flex:1 1 40rem;
+}
+
+.menu .row .content .info{
+    padding:1rem 0;
+}
+
+.menu .row .content .info h3{
+    display: flex;
+    align-items: center;
+    font-size: 2.4rem;
+    color:#333;
+}
+
+.menu .row .content .info h3 span{
+    padding-right: 1rem;
+    color:var(--yellow);
+}
+
+.menu .row .content .info p{
+    padding:1rem 0;
+    padding-left: 4.5rem;
+    font-size: 1.5rem;
+    color:#666;
+}
+
+.popular{
+    background:linear-gradient(rgba(255,255,255,.3),rgba(255,255,255,.3)), url('images/popular-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.popular .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.popular .box-container .box{
+    background:#fff;
+    width:35rem;
+    padding:2rem;
+    margin:2rem;
+    border-radius: 1rem;
+    box-shadow: 0 .3rem .5rem rgba(0,0,0,.2);
+    text-align: center;
+}
+
+.popular .box-container .box img{
+    height:20rem;
+    width:100%;
+    object-fit: cover;
+}
+
+.popular .box-container .box h3{
+    color:#333;
+    font-size: 3rem;
+    font-weight: normal;
+}
+
+.popular .box-container .box .stars i{
+    color:var(--yellow);
+    font-size: 2rem;
+    padding:1rem .1rem;
+}
+
+.popular .box-container .box .price{
+    color:#666;
+    font-size: 2.5rem;
+}
+
+.popular .box-container .box:hover{
+    transform: scale(1.02);
+    box-shadow: 0 1rem 1rem rgba(0,0,0,.2);
+}
+
+.gallery .box-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gallery .box-container .box{
+    height:20rem;
+    width:30rem;
+    margin:2rem;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery .box-container .box img{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+}
+
+.gallery .box-container .box h3{
+    position: absolute;
+    top:100%; left:50%;
+    transform: translate(-50%, -50%);
+    color:#fff;
+    text-align: center;
+    font-size: 3rem;
+    opacity: 0;
+}
+
+.gallery .box-container .box:hover h3{
+    top:50%;
+    opacity: 1;
+    transition-delay: .2s;
+}
+
+.gallery .box-container .box::before{
+    content: '';
+    position: absolute;
+    top:-100%; left:0;
+    height:100%;
+    width: 100%;
+    background:rgba(0,0,0,.7);
+    transition:.2s linear;
+}
+
+.gallery .box-container .box:hover::before{
+    top:0;
+}
+
+.order{
+    background:url('images/') no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.order .row{
+    display: flex;
+    background:#fff;
+    margin:2rem 0;
+    overflow: hidden;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.3);
+    border-radius: 1rem;
+}
+
+.order .row .image{
+    flex:1 1 40%;
+}
+
+.order .row .image img{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+}
+
+.order .row form{
+    flex:1 1 60%;
+    background:#fff;
+    padding:2rem;
+}
+
+.order .row form .box{
+    padding:1rem;
+    margin:1rem 0;
+    font-size: 1.5rem;
+    color:#333;
+    text-transform: none;
+    background:#f0f0f0;
+    width:100%;
+}
+
+.order .row form .box::placeholder{
+    text-transform: capitalize;
+}
+
+.order .row form .address{
+    resize: none;
+    height:15rem;
+}
+
+.footer{
+    background:#282727;
+    padding:1rem 7%;
+}
+
+.footer .box-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer .box-container .box{
+    flex:1 1 25rem;
+    margin:2rem;
+}
+
+.footer .box-container .box h3{
+    font-size: 2.5rem;
+    color:#fff;
+    padding:1rem 0;
+    font-weight: normal;
+}
+
+.footer .box-container .box p{
+    font-size: 1.7rem;
+    color:#eee;
+    padding:1rem 0;
+}
+
+.footer .box-container .box a{
+    font-size: 1.7rem;
+    color:#eee;
+    padding:1rem 0;
+    display: block;
+}
+
+.footer .box-container .box a:hover{
+    color:var(--yellow);
+}
+
+.footer .box-container .box p i{
+    padding-right: .5rem;
+    color:var(--yellow);
+}
+
+.footer .credit{
+    font-size: 2rem;
+    text-align: center;
+    border-top: .2rem solid rgba(255,255,255,.7);
+    padding:2rem 1rem;
+    font-weight: normal;
+    letter-spacing: .1rem;
+    color:#fff;
+}
+
+.footer .credit a{
+    color:var(--yellow);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* media queries  */
+
+@media (max-width:991px){
+
+    html{
+        font-size: 55%;
+    }
+
+    .home::before,
+    .home::after{
+        display: none;
+    }
+
+}
+
+@media (max-width:768px){
+
+
+    header #menu-bar{
+        display: block;
+    }
+
+    header .navbar{
+        position: fixed;
+        top:8rem; left:0;
+        width:100%;
+        background:var(--yellow);
+        border-top: .2rem solid rgba(0,0,0,.1);
+        transform:scaleY(0);
+        transform-origin: top;
+        opacity: 0;
+    }
+
+    header .navbar ul{
+        flex-flow: column;
+        padding:2rem;
+    }
+
+    header .navbar ul li{
+        margin:1.5rem;
+        width: 100%;
+    }
+
+    header .navbar ul li a{
+        display: block;
+        color:#fff;
+        padding-left: 2rem;
+        border-left: .2rem solid #fff;
+        font-size: 2rem;
+    }
+
+    header .navbar ul li a:hover,
+    header .navbar ul li a.active{
+        color:#333;
+        border-color: #333;
+    }
+
+    .fa-times{
+        transform:rotate(180deg);
+    }
+
+    header .navbar.nav-toggle{
+        transform:scaleY(1);
+        opacity: 1;
+    }
+
+    .home .content{
+        text-align: center;
+    }
+
+    .home .content h3{
+        font-size: 4.5rem;
+    }
+
+    .order .row .image{
+        display: none;
+    }
+
+}
+
+@media (max-width:500px){
+
+    html{
+        font-size: 50%;
+    }
+
+    section{
+        padding:1rem 5%;
+        padding-top: 8.5rem;
+    }
+}
+     
+
+      
+    </style>
+</head>
+<body>
+    
+
+
+
+    <!-- header section starts  -->
+
+<header>
+
+    <a href="#" class="logo"><img src="images/logo-img.png" alt=""></a>
+
+    <div id="menu-bar" class="fas fa-hamburger"></div>
+
+    <nav class="navbar">
+        <ul>
+            <li><a class="active" href="#home">home</a></li>
+            <li><a href="#about">about</a></li>
+            <li><a href="#menu">menu</a></li>
+            <li><a href="#popular">popular</a></li>
+            <li><a href="#gallery">gallery</a></li>
+            <li><a href="#order">order</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="content" data-aos="fade-right">
+        <h3>We belive good food offer great smile</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, odit distinctio error corporis adipisci molestias eveniet optio quaerat tempore asperiores!</p>
+        <a href="#"><button class="btn">get started</button></a>
+    </div>
+
+    <div class="image" data-aos="fade-up">
+        <img src="images/home-img.png" alt="">
+    </div>
+
+</section>
+
+<!-- home section ends -->
+
+<!-- about section starts  -->
+
+<section class="about" id="about">
+
+    <div class="image" data-aos="fade-right"></div>
+
+    <div class="content" data-aos="fade-left">
+        <h3>a word about us</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea accusantium eligendi a totam consequatur! Quis minus amet iusto iure repudiandae, incidunt enim fugiat ipsa? Iure quam et quo quos quisquam!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint totam pariatur saepe sit nostrum consequuntur, praesentium accusamus harum voluptate soluta.</p>
+        <a href="#"><button class="btn">learn more</button></a>
+    </div>
+
+</section>
+
+<!-- about section ends -->
+
+<section class="menu" id="menu">
+
+<h1 class="heading"> our delicious <span>menu</span> </h1>
+
+<ul class="list" data-aos="fade-down">
+    <li class="btn" data-src="images/menu1.jpg">breakfast</li>
+    <li class="btn active" data-src="images/menu2.jpg">lunch</li>
+    <li class="btn" data-src="images/menu3.jpg">dinner</li>
+    <li class="btn" data-src="images/menu4.jpg">dessert</li>
+</ul>
+
+<div class="row" data-aos="fade-right">
+
+    <div class="image" data-aos="fade-left">
+        <img src="images/menu2.jpg" id="menu-img" alt="">
+    </div>
+
+    <div class="content">
+        <div class="info">
+            <h3> <span>01.</span> we serve best food in the country </h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, vero?</p>
+        </div>
+        <div class="info">
+            <h3> <span>02.</span> we serve best food in the country </h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, vero?</p>
+        </div>
+        <div class="info">
+            <h3> <span>03.</span> we serve best food in the country </h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, vero?</p>
+        </div>
+        <div class="info">
+            <h3> <span>04.</span> we serve best food in the country </h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, vero?</p>
+        </div>
+    </div>
+
+</div>
+
+</section>
+
+<!-- popular section starts  -->
+
+<section class="popular" id="popular">
+
+<h1 class="heading"> most <span>popular</span> foods </h1>
+
+<div class="box-container">
+
+    <div class="box" data-aos="fade-right">
+        <img src="images/product-1.jpg" alt="">
+        <h3>delicious food</h3>
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="price">$30.00</div>
+        <a href="#"><button class="btn">add to cart</button></a>
+    </div>
+
+    <div class="box" data-aos="fade-left">
+        <img src="images/product-2.jpg" alt="">
+        <h3>delicious food</h3>
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="price">$30.00</div>
+        <a href="#"><button class="btn">add to cart</button></a>
+    </div>
+
+    <div class="box" data-aos="fade-right">
+        <img src="images/product-3.jpg" alt="">
+        <h3>delicious food</h3>
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="price">$30.00</div>
+        <a href="#"><button class="btn">add to cart</button></a>
+    </div>
+
+    <div class="box" data-aos="fade-left">
+        <img src="images/product-4.jpg" alt="">
+        <h3>delicious food</h3>
+        <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="price">$30.00</div>
+        <a href="#"><button class="btn">add to cart</button></a>
+    </div>
+
+</div>
+
+</section>
+
+<!-- popular section ends -->
+
+<!-- gallery section starts  -->
+
+<section class="gallery" id="gallery">
+
+<h1 class="heading"> our food <span>gallery</span> </h1>
+
+<div class="box-container">
+
+    <div class="box" data-aos="fade-up">
+        <img src="images/img1.jpg" alt="">
+        <h3>delicious food</h3>
+    </div>
+
+    <div class="box" data-aos="fade-up">
+        <img src="images/img2.jpg" alt="">
+        <h3>delicious food</h3>
+    </div>
+
+    <div class="box" data-aos="fade-up">
+        <img src="images/img3.jpg" alt="">
+        <h3>delicious food</h3>
+    </div>
+
+    <div class="box" data-aos="fade-up">
+        <img src="images/img4.jpg" alt="">
+        <h3>delicious food</h3>
+    </div>
+
+    <div class="box" data-aos="fade-up">
+        <img src="images/img5.jpg" alt="">
+        <h3>delicious food</h3>
+    </div>
+
+    <div class="box" data-aos="fade-up">
+        <img src="images/img6.jpg" alt="">
+        <h3>delicious food</h3>
+    </div>
+
+</div>
+
+</section>
+
+<!-- gallery section ends -->
+
+<!-- order section starts  -->
+
+<section class="order" id="order">
+
+<h1 class="heading"> make an <span>order</span> </h1>
+
+<div class="row">
+
+    <form action="" data-aos="fade-right">
+        <input type="text" placeholder="your name" class="box">
+        <input type="email" placeholder="your email" class="box">
+        <input type="password" placeholder="your password" class="box">
+        <input type="number" placeholder="your number" class="box">
+        <textarea name="" id="" cols="30" rows="10" class="box address" placeholder="your address"></textarea>
+        <input type="submit" value="order now" class="btn">
+    </form>
+
+    <div class="image" data-aos="fade-left">
+        <img src="images/form-img.jpg" alt="">
+    </div>
+
+</div>
+
+</section>
+
+<!-- order section ends -->
+
+<!-- footer section starts  -->
+
+<div class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>contact info</h3>
+            <p> <i class="fas fa-map-marker-alt"></i> mumbai, indai 400104 </p>
+            <p> <i class="fas fa-envelope"></i> example@gmail.com </p>
+            <p> <i class="fas fa-phone"></i> +123-456-7890 </p>
+            <p> <i class="fas fa-phone"></i> +111-222-333 </p>
+        </div>
+
+        <div class="box">
+            <h3>branch location</h3>
+            <a href="#">india</a>
+            <a href="#">USA</a>
+            <a href="#">france</a>
+            <a href="#">russia</a>
+        </div>
+
+        <div class="box">
+            <h3>quick links </h3>
+            <a href="#">home</a>
+            <a href="#">about</a>
+            <a href="#">menu</a>
+            <a href="#">popular</a>
+            <a href="#">gallery</a>
+            <a href="#">order</a>
+        </div>
+
+        <div class="box">
+            <h3>follow us</h3>
+            <a href="#">instagram</a>
+            <a href="#">facebook</a>
+            <a href="#">twitter</a>
+            <a href="#">linkedin</a>
+        </div>
+
+    </div>
+
+    <h1 class="credit">create by <a href="#">mr. web designer</a> all rights reserved. </h1>
+
+</div>
+
+<!-- footer section ends -->
+
+
+
+
+
+
+
+
+<!-- aos js cdn link  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<!-- jquery cdn link  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+<!-- initializing aos  -->
+
+<script>
+
+    AOS.init({
+        delay:400,
+        duration:1000
+    })
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
